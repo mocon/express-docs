@@ -17,7 +17,7 @@ npm start
 ```
 
 ## Build for production
-Compile the `lib/` directory to `dist/` using Babel with:
+Compile the `lib/` directory to `dist/` using [Babel](https://babeljs.io/) with:
 ```
 npm run build
 ```
