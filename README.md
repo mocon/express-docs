@@ -1,5 +1,5 @@
 # Express Docs
-JSON-consuming documentation generator, using Express.js.
+JSON-consuming documentation generator, using Express.js, ES6 syntax & EJS templates.
 
 ## Requirements
 - [Node.js](https://nodejs.org/en/)
