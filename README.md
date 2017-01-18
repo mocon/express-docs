@@ -11,25 +11,25 @@ yarn
 ```
 
 ## Development
-Start a [nodemon](https://github.com/remy/nodemon) server at `localhost:8080` with:
+Start a [nodemon](https://github.com/remy/nodemon) server at `localhost:8080`:
 ```
 npm start
 ```
 
 ## Build for production
-Compile the `lib/` directory to `dist/` using [Babel](https://babeljs.io/) with:
+Compile the `lib/` directory to `dist/` using [Babel](https://babeljs.io/):
 ```
 npm run build
 ```
 
 ## Serve production files
-Serve the compiled `dist/` directory at `localhost:8080` with:
+Serve the compiled `dist/` directory at `localhost:8080`:
 ```
 npm run serve
 ```
 
 ## Test
-Run the tests in `test/` with:
+Run the tests in `test/`:
 ```
 npm test
 ```
