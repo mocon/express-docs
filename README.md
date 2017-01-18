@@ -23,7 +23,7 @@ npm run build
 ```
 
 ## Serve production files
-Serve the compiled `dist/` directory at `localhost:8080`:
+Serve the compiled `dist/` directory on port `8080`:
 ```
 npm run serve
 ```
