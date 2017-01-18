@@ -29,7 +29,7 @@ npm run serve
 ```
 
 ## Test
-Run the tests in `test/`:
+Run the tests in the `test/` directory:
 ```
 npm test
 ```
