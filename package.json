@@ -4,7 +4,7 @@
   "description": "Server-rendered, dynamically generated documentation for the GumGum Design System",
   "main": "lib/index.js",
   "scripts": {
-    "start": "nodemon lib/index.js --exec babel-node",
+    "start": "DEBUG=dev nodemon lib/index.js --exec babel-node",
     "build": "babel lib -d dist",
     "serve": "node dist/index.js",
     "test": "mocha --compilers js:babel-register",
