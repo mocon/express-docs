@@ -13,23 +13,29 @@ yarn
 ## Development
 Start a [nodemon](https://github.com/remy/nodemon) server at `localhost:8080`:
 ```
-npm start
+yarn start
 ```
 
 ## Build for production
 Compile the `lib/` directory to `dist/` using [Babel](https://babeljs.io/):
 ```
-npm run build
+yarn build
 ```
 
 ## Serve production files
 Serve the compiled `dist/` directory on port `8080`:
 ```
-npm run serve
+yarn serve
 ```
 
 ## Test
 Run the tests in the `test/` directory:
 ```
-npm test
+yarn test
+```
+
+## Clean
+Delete the `node_modules/` directory, and re-install dependencies:
+```
+yarn run clean
 ```
