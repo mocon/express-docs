@@ -6,9 +6,32 @@
     <body class="-has-spa-header">
         <% include ../partials/header %>
         <main>
-            <div class="sidebar">
-                <p><%= versionNumber %></p>
-                <p>Sidebar goes here</p>
+            <div class="gds-layout__container">
+                <div class="gds-layout__row">
+                    <aside>
+                        <div class="gds-layout__column--lg-3 gds-layout__hidden-md-down">
+                            <p><%= versionNumber %></p>
+                            <p>Sidebar goes here</p>
+                        </div>
+                    </aside>
+                    <section>
+                        <div class="gds-layout__column--lg-9 gds-layout__column--md-12">
+                            <ul>
+                                <% json.map((item) => { %>
+                                    <li>
+                                        <ul>
+                                            <% item.tags.map((tag) => { %>
+                                                <li><%= tag.tag %></li>
+                                            <% }) %>
+                                        </ul>
+                                        <p><%= item.description %></p>
+                                        <p><%= item.source %></p>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
             </div>
         </main>
         <% include ../partials/footer %>
