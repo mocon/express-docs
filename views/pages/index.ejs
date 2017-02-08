@@ -19,19 +19,11 @@
                     <!-- Themes section -->
                     <section>
                         <div class="gds-layout__column--lg-9 gds-layout__column--md-12">
-                            <ul>
-                                <% json.map((item) => { %>
-                                    <li>
-                                        <ul>
-                                            <% item.tags.map((tag) => { %>
-                                                <li><%= tag.tag %></li>
-                                            <% }) %>
-                                        </ul>
-                                        <p><%= item.description %></p>
-                                        <p><%= item.source %></p>
-                                    </li>
-                                <% }) %>
-                            </ul>
+                            <pre>
+                                <code>
+                                    <%= JSON.stringify(sections) %>
+                                </code>
+                            </pre>
                         </div>
                     </section>
 
