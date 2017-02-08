@@ -11,19 +11,26 @@
                     <!-- Sidebar -->
                     <aside>
                         <div class="gds-layout__column--lg-3 gds-layout__hidden-md-down">
-                            <p><%= versionNumber %></p>
-                            <p>Sidebar goes here</p>
+                            <% Object.keys(sections).map((section) => { %>
+                                <p class="gds-text--header-sm"><%= section %></p>
+                                <% Object.keys(sections[section]).map((component) => { %>
+                                    <p><%= component %></p>
+
+                                    <% if (sections[section][component].children) { %>
+                                        <% Object.keys(sections[section][component].children).map((childComponent) => { %>
+                                            <p class="gds-text--body-sm"><%= childComponent %></p>
+                                        <% }) %>
+                                    <% } %>
+
+                                <% }) %>
+                            <% }) %>
                         </div>
                     </aside>
 
                     <!-- Themes section -->
                     <section>
                         <div class="gds-layout__column--lg-9 gds-layout__column--md-12">
-                            <pre>
-                                <code>
-                                    <%= JSON.stringify(sections) %>
-                                </code>
-                            </pre>
+                            <!-- -->
                         </div>
                     </section>
 

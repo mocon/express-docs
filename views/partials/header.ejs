@@ -5,22 +5,11 @@
         </div>
     </div>
     <div class="gds-spa-header__secondary-nav">
-        <div class="gds-spa-header__section gds-spa-header__section-icon">
-            <a class="gds-spa-header__section-link" href="#search"><i class="btl bt-search"></i></a>
-        </div>
-        <div class="gds-spa-header__section gds-spa-header__section--white">
-            <div class="gds-avatar -m-l-2" data-gds-avatar>
-                <div class="gds-avatar__image">
-                    <img src="https://c.gumgum.com/ads/com/gumgum/documentation/avatars/avatar--default2.jpg" alt="User Name" height="100%" />
-                </div>
-                <div class="gds-avatar__menu">
-                    <ul class="gds-avatar__menu-list">
-                        <li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#profile">Profile</a></li>
-                        <li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#settings">Settings</a></li>
-                        <li class="gds-avatar__menu-list-divider"></li>
-                        <li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#logout">Logout</a></li>
-                    </ul>
-                </div>
+        <div class="gds-spa-header__section">
+            <div class="gds-form-group gds-form-group--sm">
+                <select class="gds-form-group__select-input gds-form-group__select-input--sm" style="width: 80px;">
+                    <option><%= versionNumber %></option>
+                </select>
             </div>
         </div>
     </div>
