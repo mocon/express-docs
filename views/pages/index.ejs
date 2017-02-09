@@ -16,6 +16,11 @@
                     .replace(/^-+/, '')
                     .replace(/-+$/, '');
             }
+
+            // Replace space tokens
+            function replaceTokens(text) {
+                return text.replace(/---]/g, '    ');
+            }
         %>
 
         <!-- Fixed sidebar -->
@@ -24,8 +29,8 @@
                 <ul class="gds-accordion-list">
                     <% Object.keys(sections).map((section) => { %>
                         <li class="gds-accordion__item gds-accordion__item--active" data-gds-accordion-item>
-                            <h4 class="gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= section %></h4>
-                            <i class="gds-accordion__item-icon gds-accordion__item-icon--sm"></i>
+                            <h4 class="gds-accordion__item-title -p-l-3" data-gds-accordion-title><%= section %></h4>
+                            <i class="gds-accordion__item-icon"></i>
                             <ul class="gds-accordion__child-items gds-accordion__child-items--sm">
                                 <% Object.keys(sections[section]).map((component) => { %>
                                     <li class="gds-accordion__child-item gds-accordion__item" data-gds-accordion-item>
@@ -55,22 +60,27 @@
 
         <!-- Main content section -->
         <main>
-            <div class="gds-layout__column--xl-10 gds-layout__column--xl-push-2 gds-layout__column--lg-9 gds-layout__column--lg-push-3 gds-layout__column--md-12 -p-h-4 -p-h-3-md -p-b-3" style="margin-top: 55px;">
+            <div class="gds-layout__column--xl-10 gds-layout__column--xl-push-2 gds-layout__column--lg-9 gds-layout__column--lg-push-3 gds-layout__column--md-12 -p-h-3 -p-b-3" style="margin-top: calc(55px - 1rem);">
                 <% Object.keys(sections).map((section) => { %>
                     <h1 class="gds-text--header-md -m-t-4 -m-b-3"><%= section %></h1>
                     <% Object.keys(sections[section]).map((component) => { %>
                         <div id='<%= slugify(component) %>' class="anchor"></div>
-                        <div class="gds-card" style="height: 200px;">
-                            <div class="gds-card__block">
-                                <%= component %>
+                        <div class="gds-card -m-b-3">
+                            <div class="gds-card__block -p-a-3">
+                                <h3 class="gds-text--header-sm gds-text--primary -m-b-2"><%= component %></h3>
+                                <p><%- sections[section][component].description %></p>
+                            </div>
+                            <div>
+<pre><code class="language-html"><%= replaceTokens(sections[section][component].example) %></code></pre>
                             </div>
                         </div>
                         <% if (sections[section][component].children) { %>
                             <% Object.keys(sections[section][component].children).map((childComponent) => { %>
                                 <div id='<%= slugify(`${component} ${childComponent}`) %>' class="anchor"></div>
-                                <div class="gds-card" style="height: 200px;">
-                                    <div class="gds-card__block">
-                                        <%= childComponent %>
+                                <div class="gds-card -m-b-3">
+                                    <div class="gds-card__block -p-a-3">
+                                        <h3 class="gds-text--header-sm gds-text--primary -m-b-2"><%= childComponent %></h3>
+                                        <p><%- sections[section][component].description %></p>
                                     </div>
                                 </div>
                             <% }) %>
