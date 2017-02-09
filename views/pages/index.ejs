@@ -67,21 +67,38 @@
                         <div id='<%= slugify(component) %>' class="anchor"></div>
                         <div class="gds-card -m-b-3">
                             <div class="gds-card__block -p-a-3">
+                                <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Name</label>
                                 <h3 class="gds-text--header-sm gds-text--primary -m-b-2"><%= component %></h3>
+                                <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Description</label>
                                 <p><%- sections[section][component].description %></p>
+                                <!-- If this component should render example markup -->
+                                <% if (sections[section][component].renderMarkup === 'true') { %>
+                                    <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-h-0 -m-b-0">Example</label>
+                                    <div class="-m-v-3">
+                                        <%- replaceTokens(sections[section][component].example) %>
+                                    </div>
+                                <% } %>
                             </div>
-                            <div>
 <pre><code class="language-html"><%= replaceTokens(sections[section][component].example) %></code></pre>
-                            </div>
                         </div>
                         <% if (sections[section][component].children) { %>
                             <% Object.keys(sections[section][component].children).map((childComponent) => { %>
                                 <div id='<%= slugify(`${component} ${childComponent}`) %>' class="anchor"></div>
                                 <div class="gds-card -m-b-3">
                                     <div class="gds-card__block -p-a-3">
+                                        <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Name</label>
                                         <h3 class="gds-text--header-sm gds-text--primary -m-b-2"><%= childComponent %></h3>
-                                        <p><%- sections[section][component].description %></p>
+                                        <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Description</label>
+                                        <p><%- sections[section][component].children[childComponent].description %></p>
+                                        <!-- If this component should render example markup -->
+                                        <% if (sections[section][component].children[childComponent].renderMarkup === 'true') { %>
+                                            <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-h-0 -m-b-0">Example</label>
+                                            <div class="-m-v-3">
+                                                <%- replaceTokens(sections[section][component].children[childComponent].example) %>
+                                            </div>
+                                        <% } %>
                                     </div>
+<pre><code class="language-html"><%= replaceTokens(sections[section][component].children[childComponent].example) %></code></pre>
                                 </div>
                             <% }) %>
                         <% } %>
