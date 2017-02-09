@@ -5,52 +5,46 @@
     </head>
     <body>
         <% include ../partials/header %>
+
+        <!-- Fixed sidebar -->
+        <aside class="gds-layout__column--xl-2 gds-layout__column--lg-3 gds-layout__hidden-md-down -p-h-0" style="position: fixed; height: calc(100% - 55px); top: 55px; overflow-y: scroll;">
+            <div class="gds-accordion" style="box-shadow: none;" data-gds-accordion>
+                <ul class="gds-accordion-list">
+                    <% Object.keys(sections).map((section) => { %>
+                        <li class="gds-accordion__item gds-accordion__item--active" data-gds-accordion-item>
+                            <h4 class="gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= section %></h4>
+                            <i class="gds-accordion__item-icon gds-accordion__item-icon--sm"></i>
+                            <ul class="gds-accordion__child-items gds-accordion__child-items--sm">
+                                <% Object.keys(sections[section]).map((component) => { %>
+                                    <li class="gds-accordion__child-item gds-accordion__item" data-gds-accordion-item>
+                                        <h4 class="gds-accordion__child-item-title gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= component %></h4>
+                                        <% if (sections[section][component].children) { %>
+                                            <i class="gds-accordion__child-item-icon gds-accordion__item-icon--sm gds-accordion__item-icon"></i>
+                                            <ul class="gds-accordion__child-items">
+                                                <% Object.keys(sections[section][component].children).map((childComponent) => { %>
+                                                    <li class="gds-accordion__child-item">
+                                                        <h4 class="gds-accordion__child-item-title gds-accordion__item-title--sm"><%= childComponent %></h4>
+                                                    </li>
+                                                <% }) %>
+                                            </ul>
+                                        <% } %>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main content section -->
         <main>
-
-            <!-- Fixed sidebar -->
-            <aside class="gds-layout__column--lg-3 gds-layout__hidden-md-down -p-h-0" style="position: fixed; height: 100%; padding-top: 55px; overflow-y: scroll;">
-                <div class="gds-accordion" data-gds-accordion>
-                    <ul class="gds-accordion-list">
-                        <% Object.keys(sections).map((section) => { %>
-                            <li class="gds-accordion__item gds-accordion__item--active" data-gds-accordion-item>
-                                <h4 class="gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= section %></h4>
-                                <i class="gds-accordion__item-icon gds-accordion__item-icon--sm"></i>
-                                <ul class="gds-accordion__child-items gds-accordion__child-items--sm">
-                                    <% Object.keys(sections[section]).map((component) => { %>
-                                        <li class="gds-accordion__child-item gds-accordion__item" data-gds-accordion-item>
-                                            <h4 class="gds-accordion__child-item-title gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= component %></h4>
-                                            <% if (sections[section][component].children) { %>
-                                                <i class="gds-accordion__child-item-icon gds-accordion__item-icon--sm gds-accordion__item-icon"></i>
-                                                <ul class="gds-accordion__child-items">
-                                                    <% Object.keys(sections[section][component].children).map((childComponent) => { %>
-                                                        <li class="gds-accordion__child-item">
-                                                            <h4 class="gds-accordion__child-item-title gds-accordion__item-title--sm"><%= childComponent %></h4>
-                                                        </li>
-                                                    <% }) %>
-                                                </ul>
-                                            <% } %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </div>
-            </aside>
-
-            <div class="gds-layout__container gds-layout__container--full-width">
-                <div class="gds-layout__row">
-
-                    <!-- Main content section -->
-                    <section>
-                        <div class="gds-layout__column--lg-9 gds-layout__column--md-12">
-                            <!-- -->
-                        </div>
-                    </section>
-
-                </div><!-- /row -->
-            </div><!-- /container -->
+            <div class="gds-layout__column--xl-10 gds-layout__column--xl-push-2 gds-layout__column--lg-9 gds-layout__column--lg-push-3 gds-layout__column--md-12 -p-h-3" style="padding-top: 4.5rem;">
+                <!-- -->
+                <p>Content goes here.</p>
+            </div>
         </main>
+
         <% include ../partials/footer %>
     </body>
 </html>
