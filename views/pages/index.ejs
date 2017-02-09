@@ -39,9 +39,24 @@
 
         <!-- Main content section -->
         <main>
-            <div class="gds-layout__column--xl-10 gds-layout__column--xl-push-2 gds-layout__column--lg-9 gds-layout__column--lg-push-3 gds-layout__column--md-12 -p-h-3" style="padding-top: 4.5rem;">
-                <!-- -->
-                <p>Content goes here.</p>
+            <div class="gds-layout__column--xl-10 gds-layout__column--xl-push-2 gds-layout__column--lg-9 gds-layout__column--lg-push-3 gds-layout__column--md-12 -p-h-3 -p-b-3" style="padding-top: 4.5rem;">
+                <% Object.keys(sections).map((section) => { %>
+                    <h1 class="gds-text--header-md -m-b-3"><%= section %></h1>
+
+                    <% Object.keys(sections[section]).map((component) => { %>
+                        <p><%= component %></p>
+
+                        <% if (sections[section][component].children) { %>
+
+                            <% Object.keys(sections[section][component].children).map((childComponent) => { %>
+                                <p class="-m-l-3"><%= childComponent %></p>
+                            <% }) %>
+
+                        <% } %>
+
+                    <% }) %>
+
+                <% }) %>
             </div>
         </main>
 
