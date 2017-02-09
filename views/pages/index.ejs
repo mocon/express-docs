@@ -6,6 +6,18 @@
     <body>
         <% include ../partials/header %>
 
+        <%
+            // Slugify component names, for anchor links
+            function slugify(text) {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .replace(/[^\w\-]+/g, '')
+                    .replace(/\-\-+/g, '-')
+                    .replace(/^-+/, '')
+                    .replace(/-+$/, '');
+            }
+        %>
+
         <!-- Fixed sidebar -->
         <aside class="gds-layout__column--xl-2 gds-layout__column--lg-3 gds-layout__hidden-md-down -p-h-0" style="position: fixed; height: calc(100% - 55px); top: 55px; overflow-y: scroll;">
             <div class="gds-accordion" style="box-shadow: none;" data-gds-accordion>
@@ -17,13 +29,17 @@
                             <ul class="gds-accordion__child-items gds-accordion__child-items--sm">
                                 <% Object.keys(sections[section]).map((component) => { %>
                                     <li class="gds-accordion__child-item gds-accordion__item" data-gds-accordion-item>
-                                        <h4 class="gds-accordion__child-item-title gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= component %></h4>
+                                        <a href='#<%= slugify(component) %>'>
+                                            <h4 class="gds-accordion__child-item-title gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= component %></h4>
+                                        </a>
                                         <% if (sections[section][component].children) { %>
                                             <i class="gds-accordion__child-item-icon gds-accordion__item-icon--sm gds-accordion__item-icon"></i>
                                             <ul class="gds-accordion__child-items">
                                                 <% Object.keys(sections[section][component].children).map((childComponent) => { %>
                                                     <li class="gds-accordion__child-item">
-                                                        <h4 class="gds-accordion__child-item-title gds-accordion__item-title--sm"><%= childComponent %></h4>
+                                                        <a href='#<%= slugify(`${component} ${childComponent}`) %>'>
+                                                            <h4 class="gds-accordion__child-item-title gds-accordion__item-title--sm"><%= childComponent %></h4>
+                                                        </a>
                                                     </li>
                                                 <% }) %>
                                             </ul>
@@ -39,23 +55,27 @@
 
         <!-- Main content section -->
         <main>
-            <div class="gds-layout__column--xl-10 gds-layout__column--xl-push-2 gds-layout__column--lg-9 gds-layout__column--lg-push-3 gds-layout__column--md-12 -p-h-3 -p-b-3" style="padding-top: 4.5rem;">
+            <div class="gds-layout__column--xl-10 gds-layout__column--xl-push-2 gds-layout__column--lg-9 gds-layout__column--lg-push-3 gds-layout__column--md-12 -p-h-4 -p-h-3-md -p-b-3" style="margin-top: 55px;">
                 <% Object.keys(sections).map((section) => { %>
-                    <h1 class="gds-text--header-md -m-b-3"><%= section %></h1>
-
+                    <h1 class="gds-text--header-md -m-t-4 -m-b-3"><%= section %></h1>
                     <% Object.keys(sections[section]).map((component) => { %>
-                        <p><%= component %></p>
-
+                        <div id='<%= slugify(component) %>' class="anchor"></div>
+                        <div class="gds-card" style="height: 200px;">
+                            <div class="gds-card__block">
+                                <%= component %>
+                            </div>
+                        </div>
                         <% if (sections[section][component].children) { %>
-
                             <% Object.keys(sections[section][component].children).map((childComponent) => { %>
-                                <p class="-m-l-3"><%= childComponent %></p>
+                                <div id='<%= slugify(`${component} ${childComponent}`) %>' class="anchor"></div>
+                                <div class="gds-card" style="height: 200px;">
+                                    <div class="gds-card__block">
+                                        <%= childComponent %>
+                                    </div>
+                                </div>
                             <% }) %>
-
                         <% } %>
-
                     <% }) %>
-
                 <% }) %>
             </div>
         </main>

@@ -1,0 +1,21 @@
+/* Custom scrollbars */
+::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(172,172,172,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(172,172,172,0.7);
+    border-radius: 0;
+}
+
+/* Anchors */
+.anchor {
+    display: block;
+    position: relative;
+    top: calc(-55px - 2rem);
+    visibility: hidden;
+}
