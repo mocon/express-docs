@@ -17,15 +17,18 @@
 .anchor {
     display: block;
     position: relative;
-    top: calc(-55px - 2rem);
+    top: calc(-55px - 1rem);
     visibility: hidden;
 }
 
 /* Prism.js syntax-highlighted code blocks */
 .gds-card pre[class*=language-] {
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.8rem;
     margin: 0;
     border-radius: 0 0 2px 2px;
-    font-size: 0.9rem;
     padding: 1.5rem;
     background: #292929;
+    opacity: 0.15;
+    transition: opacity 2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }

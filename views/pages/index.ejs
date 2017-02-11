@@ -28,9 +28,9 @@
             <div class="gds-accordion" style="box-shadow: none;" data-gds-accordion>
                 <ul class="gds-accordion-list">
                     <% Object.keys(sections).map((section) => { %>
-                        <li class="gds-accordion__item gds-accordion__item--active" data-gds-accordion-item>
-                            <h4 class="gds-accordion__item-title -p-l-3" data-gds-accordion-title><%= section %></h4>
-                            <i class="gds-accordion__item-icon"></i>
+                        <li class="gds-accordion__item" data-gds-accordion-item>
+                            <h4 class="gds-accordion__item-title gds-accordion__item-title--sm" data-gds-accordion-title><%= section %></h4>
+                            <i class="gds-accordion__item-icon gds-accordion__item-icon--sm"></i>
                             <ul class="gds-accordion__child-items gds-accordion__child-items--sm">
                                 <% Object.keys(sections[section]).map((component) => { %>
                                     <li class="gds-accordion__child-item gds-accordion__item" data-gds-accordion-item>
@@ -79,7 +79,9 @@
                                     </div>
                                 <% } %>
                             </div>
-<pre><code class="language-html"><%= replaceTokens(sections[section][component].example) %></code></pre>
+                            <div class="-color-bg-dk-2">
+<pre class="language-html"><code><%= replaceTokens(sections[section][component].example) %></code></pre>
+                            </div>
                         </div>
                         <% if (sections[section][component].children) { %>
                             <% Object.keys(sections[section][component].children).map((childComponent) => { %>
@@ -98,7 +100,9 @@
                                             </div>
                                         <% } %>
                                     </div>
-<pre><code class="language-html"><%= replaceTokens(sections[section][component].children[childComponent].example) %></code></pre>
+                                    <div class="-color-bg-dk-2">
+<pre class="language-html"><code><%= replaceTokens(sections[section][component].children[childComponent].example) %></code></pre>
+                                    </div>
                                 </div>
                             <% }) %>
                         <% } %>

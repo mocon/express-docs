@@ -1,2 +1,57 @@
 <script src="https://ds.gumgum.com/stable/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+<script>
+    document.removeEventListener('DOMContentLoaded', Prism.highlightAll);
+    let codeBlocks = {};
+
+    const isInViewport = (element) => {
+        const rect = element.getBoundingClientRect();
+        const html = document.documentElement;
+        const viewportHeight = (window.innerHeight || html.clientHeight);
+
+        return (
+            rect.top >= -1500 && rect.top <= viewportHeight &&
+            rect.bottom <= viewportHeight + 1500
+        );
+    }
+
+    const throttle = (fn, wait) => {
+        const time = Date.now();
+
+        return () => {
+            if ((time + wait - Date.now()) < 0) {
+                fn();
+                time = Date.now();
+            }
+        }
+    }
+
+    const checkCodeBlocks = () => {
+        if (!Object.keys(codeBlocks)) return false;
+
+        Object.keys(codeBlocks).map((codeBlock) => {
+            let thisCodeBlock = codeBlocks[codeBlock];
+
+            thisCodeBlock.originalMarkup = thisCodeBlock.innerText;
+
+            if (isInViewport(thisCodeBlock)) {
+                // Syntax highlight it
+                Prism.highlightElement(thisCodeBlock);
+                thisCodeBlock.style.opacity = 1;
+            } else {
+                // Don't syntax highlight it
+                thisCodeBlock.innerText = thisCodeBlock.originalMarkup;
+                thisCodeBlock.style.opacity = 0.15;
+            }
+        });
+    }
+
+    window.onload = () => {
+        codeBlocks = document.querySelectorAll('pre.language-html');
+        checkCodeBlocks();
+    }
+
+    window.onscroll = () => {
+        throttle(checkCodeBlocks(), 500);
+    }
+</script>
