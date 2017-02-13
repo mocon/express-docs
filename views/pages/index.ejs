@@ -21,6 +21,11 @@
             function replaceTokens(text) {
                 return text.replace(/---]/g, '    ');
             }
+
+            // Break optionalClasses into array
+            function splitArrayString(text) {
+                return text.split(',');
+            }
         %>
 
         <!-- Fixed sidebar -->
@@ -69,17 +74,37 @@
                             <div class="gds-card__block -p-a-3">
                                 <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Name</label>
                                 <h3 class="gds-text--header-sm gds-text--primary -m-b-2"><%= component %></h3>
+
                                 <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Description</label>
                                 <p><%- sections[section][component].description %></p>
+
+                                <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-l-0 -m-b-0">Author</label>
+                                <p><%- sections[section][component].author %></p>
+
+                                <!-- If this component has a tabTrigger, show it -->
+                                <% if (sections[section][component].tabTrigger !== '') { %>
+                                    <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-l-0 -m-b-0">Autocomplete Trigger</label>
+                                    <p class="-m-b-1"><span class="gds-text--keyboard gds-text--body-sm"><%- sections[section][component].tabTrigger %></span></p>
+                                <% } %>
+
                                 <!-- If this component should render example markup -->
                                 <% if (sections[section][component].renderMarkup === 'true') { %>
-                                    <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-h-0 -m-b-0">Example</label>
+                                    <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-h-0 -m-b-0">Rendered Example</label>
                                     <div class="-m-v-3">
                                         <%- replaceTokens(sections[section][component].example) %>
                                     </div>
                                 <% } %>
+
+                                <!-- Optional classes -->
+                                <% if (sections[section][component].optionalClasses !== '') { %>
+                                    <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-l-0 -m-b-0">Options</label>
+                                    <% splitArrayString(sections[section][component].optionalClasses).map((className) => { %>
+                                        <p><span class="gds-text--code gds-text--body-sm"><%= className %></span></p>
+                                    <% }) %>
+                                <% } %>
                             </div>
                             <div class="-color-bg-dk-2">
+                                <label class="gds-form-group__label -text-tr-up -color-tx-dk-4 -m-t-3 -m-l-3 -m-b-0 -p-l-2">Code Sample</label>
 <pre class="language-html"><code><%= replaceTokens(sections[section][component].example) %></code></pre>
                             </div>
                         </div>
@@ -90,17 +115,37 @@
                                     <div class="gds-card__block -p-a-3">
                                         <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Name</label>
                                         <h3 class="gds-text--header-sm gds-text--primary -m-b-2"><%= childComponent %></h3>
+
                                         <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-a-0">Description</label>
                                         <p><%- sections[section][component].children[childComponent].description %></p>
+
+                                        <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-l-0 -m-b-0">Author</label>
+                                        <p><%- sections[section][component].author %></p>
+
+                                        <!-- If this component has a tabTrigger, show it -->
+                                        <% if (sections[section][component].children[childComponent].tabTrigger !== '') { %>
+                                            <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-l-0 -m-b-0">Autocomplete Trigger</label>
+                                            <p class="-m-b-1"><span class="gds-text--keyboard gds-text--body-sm"><%- sections[section][component].children[childComponent].tabTrigger %></span></p>
+                                        <% } %>
+
                                         <!-- If this component should render example markup -->
                                         <% if (sections[section][component].children[childComponent].renderMarkup === 'true') { %>
-                                            <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-h-0 -m-b-0">Example</label>
+                                            <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-h-0 -m-b-0">Rendered Example</label>
                                             <div class="-m-v-3">
                                                 <%- replaceTokens(sections[section][component].children[childComponent].example) %>
                                             </div>
                                         <% } %>
+
+                                        <!-- Optional classes -->
+                                        <% if (sections[section][component].children[childComponent].optionalClasses !== '') { %>
+                                            <label class="gds-form-group__label -text-tr-up -color-tx-lt-2 -m-t-3 -m-l-0 -m-b-0">Options</label>
+                                            <% splitArrayString(sections[section][component].children[childComponent].optionalClasses).map((className) => { %>
+                                                <p><span class="gds-text--code gds-text--body-sm"><%= className %></span></p>
+                                            <% }) %>
+                                        <% } %>
                                     </div>
                                     <div class="-color-bg-dk-2">
+                                        <label class="gds-form-group__label -text-tr-up -color-tx-dk-4 -m-t-3 -m-l-3 -m-b-0 -p-l-2">Code Sample</label>
 <pre class="language-html"><code><%= replaceTokens(sections[section][component].children[childComponent].example) %></code></pre>
                                     </div>
                                 </div>
